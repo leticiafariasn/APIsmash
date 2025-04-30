@@ -1,67 +1,68 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background: #f5f5f5;
-  color: #333;
-}
-
-header {
-  background-color: #4a90e2;
-  color: white;
-  padding: 1rem;
-  text-align: center;
-}
-
-.upload-area {
-  text-align: center;
-  padding: 1rem;
-  background-color: #e1ecf4;
-}
-
-.upload-area button {
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-.file-list {
-  max-width: 800px;
-  margin: 2rem auto;
-  background: white;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.file-list h2 {
-  margin-bottom: 1rem;
-}
-
-.file-list ul {
-  list-style: none;
-}
-
-.file {
-  display: flex;
-  align-items: center;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #ddd;
-}
-
-.file img {
-  width: 32px;
-  height: 32px;
-  margin-right: 1rem;
-}
-
-footer {
-  text-align: center;
-  padding: 1rem;
-  background-color: #f0f0f0;
-  margin-top: 2rem;
-}
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    color: #333;
+  }
+  
+  header {
+    background-color: #4a90e2;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .upload-area {
+    text-align: center;
+    padding: 1rem;
+    background-color: #e1ecf4;
+  }
+  
+  .upload-area button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .file-list {
+    max-width: 800px;
+    margin: 2rem auto;
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .file-list h2 {
+    margin-bottom: 1rem;
+  }
+  
+  .file-list ul {
+    list-style: none;
+  }
+  
+  .file {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .file img {
+    width: 32px;
+    height: 32px;
+    margin-right: 1rem;
+  }
+  
+  footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #f0f0f0;
+    margin-top: 2rem;
+  }
+  
