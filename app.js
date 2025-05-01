@@ -1,14 +1,14 @@
 const MAX_SIZE_MB = 5
-const messageArea = document.getElementById("messageArea")
-const fileList = document.getElementById("fileList")
-const fileCount = document.getElementById("fileCount")
-const totalSize = document.getElementById("totalSize")
-const linkCount = document.getElementById("linkCount")
-const usageBar = document.getElementById("usageBar")
-const usagePercent = document.getElementById("usagePercent")
-const usedSpace = document.getElementById("usedSpace")
-const activityList = document.getElementById("activityList")
-const themeToggle = document.getElementById("theme-toggle")
+const messageArea = document.getElementById("messageArea") //area da mensagem de upload concluido
+const fileList = document.getElementById("fileList") //fileList é onde os arquivos enviados vão aparecer
+const fileCount = document.getElementById("fileCount") //mostra quantos arquivos já foram enviados
+const totalSize = document.getElementById("totalSize") // mostra o tamanho total de arquivos enviados, somando todos 
+const linkCount = document.getElementById("linkCount") // mostra quantos links de arquivos enviados já foram gerados
+const usageBar = document.getElementById("usageBar") // Seleciona a barra de progresso que mostra o quanto de espaço dos 500mb já foi usado
+const usagePercent = document.getElementById("usagePercent") // pega o elemento que mostra em texto o percentual usado
+const usedSpace = document.getElementById("usedSpace") // guarda em texto o valor do espaço utilizado até agora (tipo: 15mb)
+const activityList = document.getElementById("activityList") // guarda a lista
+const themeToggle = document.getElementById("theme-toggle") // mudança de tema
 
 // Inicializar contadores
 let uploadedFiles = 0
