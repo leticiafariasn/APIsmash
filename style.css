@@ -159,14 +159,13 @@ body {
 
 .categories {
   margin-top: 20px;
-  padding: 0 20px;
 }
 
 .categories h3 {
   font-size: 12px;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   padding-left: 20px;
 }
 
