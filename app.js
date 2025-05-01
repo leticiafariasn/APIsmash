@@ -27,14 +27,15 @@ function upload() {
   const su = new SmashUploader({
     region: "us-east-1",
     token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBmMWEzNzU1LTQzZDEtNGQ4ZC04ZDNkLWVhYjJiMWMwODk2NC1ldSIsInVzZXJuYW1lIjoiYjY3ZWI5N2MtMmYyYy00NzhkLTk3YTgtOGM3MDY5OTZlMTE3IiwicmVnaW9uIjoidXMtZWFzdC0xIiwiaXAiOiIxODcuMTguMTM3LjEzOSIsInNjb3BlIjoiTm9uZSIsImFjY291bnQiOiIyZTIxMGYyYS0zODgyLTQxZmUtOTJhZS0zZWUxYTkyM2QzZTgtZWEiLCJpYXQiOjE3NDYwNTE5NzYsImV4cCI6NDkwMTgxMTk3Nn0.eIWTMInHUAijFtmtcg7QA8QLrWzM-MhL1-HHzt9gkzM",
-    domain: "drive-gt15" // subdomínio sem o .fromsmash.com
+    domain: "drive-gt15"
   });
 
   su.upload({ files })
-    .then(transfer => {
-      console.log("Objeto transfer recebido:", transfer);
+    .then(result => {
+      console.log("Objeto transfer recebido:", result);
 
-      const link = transfer?.share?.url || transfer?.url || (transfer?.links?.[0]?.url);
+      const transferObj = result?.transfer;
+      const link = transferObj?.share?.url || transferObj?.transferUrl || transferObj?.url;
 
       if (link) {
         showMessage(`Upload concluído! <a href="${link}" target="_blank">Clique aqui para baixar</a>`, "success");
