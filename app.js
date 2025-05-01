@@ -33,13 +33,16 @@ function upload() {
     .then(transfer => {
       console.log("Objeto transfer recebido:", transfer);
 
-      const link = transfer?.share?.url || transfer?.url || transfer?.links?.[0]?.url;
-
-      if (link) {
-        showMessage(`Upload concluído! <a href="${link}" target="_blank">Clique aqui para baixar</a>`, "success");
-      } else {
-        showMessage("Upload concluído, mas o link não está disponível.", "error");
-      }
+      transfer.getDownloadUrl().then(link => {
+        if (link) {
+          showMessage(`Upload concluído! <a href="${link}" target="_blank">Clique aqui para baixar</a>`, "success");
+        } else {
+          showMessage("Upload concluído, mas o link não foi gerado.", "error");
+        }
+      }).catch(err => {
+        console.error("Erro ao obter o link de download:", err);
+        showMessage("Erro ao obter o link de download.", "error");
+      });      
 
       // Adiciona os arquivos enviados na lista
       files.forEach(file => {
