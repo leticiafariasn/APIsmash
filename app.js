@@ -32,16 +32,7 @@ function upload() {
 
   su.upload({ files })
     .then(result => {
-      console.log("Objeto transfer recebido:", result);
-
-      // A resposta vem como: { status: 'Finished', transfer: { ... } }
-      const transferObj = result?.transfer;
-      const link =
-        transferObj?.share?.url ||            // Caso o compartilhamento esteja ativado
-        transferObj?.transferUrl ||           // Link direto
-        transferObj?.url ||                   // Alternativa
-        result?.transferUrl ||                // fallback extra
-        result?.url;                          // fallback geral
+      const link = result?.transfer?.transferUrl;
 
       if (link) {
         showMessage(`Upload concluído! <a href="${link}" target="_blank">Clique aqui para baixar</a>`, "success");
