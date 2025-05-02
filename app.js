@@ -10,18 +10,18 @@ const usedSpace = document.getElementById("usedSpace") // guarda em texto o valo
 const activityList = document.getElementById("activityList") // guarda a lista
 const themeToggle = document.getElementById("theme-toggle") // mudança de tema
 
-// Inicializar contadores
+// inicializar contadores
 let uploadedFiles = 0
 let totalSizeBytes = 0
 let generatedLinks = 0
 
-// Adicione esta função para rastrear a posição do mouse para os tooltips
+// rastrear a posição do mouse para os tooltips
 document.addEventListener("mousemove", (e) => {
   document.documentElement.style.setProperty("--tooltip-x", `${e.clientX}px`)
   document.documentElement.style.setProperty("--tooltip-y", `${e.clientY}px`)
 })
 
-// Função para alternar o tema
+// alternar o tema
 function toggleTheme() {
   const html = document.documentElement
   const isDarkTheme = html.classList.contains("dark-theme")
@@ -37,7 +37,7 @@ function toggleTheme() {
   }
 }
 
-// Verificar tema salvo ou usar o padrão (escuro)
+// verificar tema salvo (escuro)
 function initTheme() {
   const savedTheme = localStorage.getItem("theme")
   const html = document.documentElement
@@ -51,11 +51,10 @@ function initTheme() {
   }
 }
 
-// Modificar a função showMessage para usar a barra de progresso
+// modificar a função showMessage para usar a barra de progresso
 function showMessage(msg, type = "success") {
   // Se for uma mensagem de sucesso de upload, não mostrar o link
   if (type === "success" && msg.includes("Upload concluído")) {
-    // Remover o link "Clique aqui para baixar"
     msg = "Upload concluído!"
   }
 

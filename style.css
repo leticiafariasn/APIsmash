@@ -1,6 +1,5 @@
-/* Variáveis de cores para temas */
 :root {
-  /* Tema claro */
+  /* tema claro */
   --bg-main: #f8f9fa;
   --bg-card: #fff;
   --bg-sidebar: #fff;
@@ -30,7 +29,7 @@
   --error-text: #c62828;
 }
 
-/* Tema escuro */
+/* tema escuro */
 .dark-theme {
   --bg-main: #121212;
   --bg-card: #1e1e1e;
@@ -61,7 +60,6 @@
   --error-text: #f44336;
 }
 
-/* Estilos Gerais */
 * {
   margin: 0;
   padding: 0;
@@ -85,11 +83,10 @@ body {
   display: flex;
   flex: 1;
   width: 100%;
-  height: 100%; /* Altura total sem o footer */
+  height: 100%; 
   overflow: hidden;
 }
 
-/* Coluna Esquerda - Navegação */
 .sidebar {
   width: 250px;
   background: var(--bg-sidebar);
@@ -207,7 +204,6 @@ body {
   color: var(--text-muted);
 }
 
-/* Coluna Central - Conteúdo Principal */
 .main-content {
   flex: 1;
   padding: 20px;
@@ -289,7 +285,6 @@ body {
 
 .upload-area {
   position: relative;
-  /* Removido o margin-bottom */
 }
 
 .upload-container {
@@ -367,7 +362,6 @@ body {
   color: var(--error-text);
 }
 
-/* Estilizando o link "Clique aqui para baixar" */
 .message.success a {
   color: #a8ffb0;
   text-decoration: none;
@@ -457,7 +451,6 @@ body {
   text-overflow: ellipsis;
 }
 
-/* Coluna Direita - Estatísticas */
 .stats-sidebar {
   width: 280px;
   background: var(--bg-sidebar);
@@ -606,12 +599,10 @@ body {
   text-align: center;
 }
 
-/* Footer - Removido */
 footer {
   display: none;
 }
 
-/* Estilos para visualização em lista */
 .file-list.list-view li {
   display: grid;
   grid-template-columns: auto 1fr auto auto;
@@ -642,17 +633,16 @@ footer {
   color: var(--accent-color);
 }
 
-/* Estilizando os tooltips personalizados - versão corrigida */
 [title] {
   position: relative;
 }
 
 [title]:hover::after {
   content: attr(title);
-  position: fixed; /* Alterado de absolute para fixed */
-  bottom: auto; /* Removido o posicionamento bottom */
-  top: calc(var(--tooltip-y, 0) - 40px); /* Posição dinâmica baseada na posição do mouse */
-  left: calc(var(--tooltip-x, 0)); /* Posição dinâmica baseada na posição do mouse */
+  position: fixed;
+  bottom: auto; 
+  top: calc(var(--tooltip-y, 0) - 40px); 
+  left: calc(var(--tooltip-x, 0)); 
   transform: translateX(-50%);
   background: var(--accent-color);
   color: white;
@@ -660,19 +650,19 @@ footer {
   border-radius: 4px;
   font-size: 12px;
   white-space: nowrap;
-  z-index: 9999; /* Z-index muito alto para garantir que fique acima de tudo */
+  z-index: 9999; 
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   opacity: 0;
   animation: fadeIn 0.3s ease forwards;
-  pointer-events: none; /* Evita que o tooltip interfira com cliques */
+  pointer-events: none; 
 }
 
 [title]:hover::before {
   content: "";
-  position: fixed; /* Alterado de absolute para fixed */
-  top: calc(var(--tooltip-y, 0) - 30px); /* Posição dinâmica para a seta */
-  left: calc(var(--tooltip-x, 0)); /* Posição dinâmica para a seta */
-  transform: translateX(-50%) rotate(180deg); /* Rotacionado para apontar para baixo */
+  position: fixed; 
+  top: calc(var(--tooltip-y, 0) - 30px); 
+  left: calc(var(--tooltip-x, 0)); 
+  transform: translateX(-50%) rotate(180deg); 
   border-width: 5px;
   border-style: solid;
   border-color: transparent transparent var(--accent-color) transparent;
@@ -682,7 +672,6 @@ footer {
   pointer-events: none;
 }
 
-/* Estilo para a barra de progresso de upload */
 .upload-progress {
   width: 100%;
   height: 40px;
@@ -691,7 +680,7 @@ footer {
   margin-top: 15px;
   overflow: hidden;
   position: relative;
-  display: none; /* Inicialmente oculta */
+  display: none; 
 }
 
 .upload-progress-bar {
@@ -720,7 +709,6 @@ footer {
   }
 }
 
-/* Responsividade */
 @media (max-width: 1200px) {
   .sidebar {
     width: 220px;
@@ -886,7 +874,6 @@ footer {
   }
 }
 
-/* Ajuste para mobile em modo paisagem */
 @media (max-height: 500px) and (orientation: landscape) {
   .container {
     flex-direction: row;
