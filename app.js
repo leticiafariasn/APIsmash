@@ -196,11 +196,11 @@ function upload() {
           <i class="ph ${iconClass}"></i>
           <span>${file.name}</span>
           <small>${fileSize} MB</small>
-          <button class="copy-link" data-link="${link}" title="Copiar link">
-            <i class="ph ph-copy"></i>
+          <button class="copy-link" data-link="${link}" data-title="Copiar link">
+           <i class="ph ph-copy"></i>
           </button>
-          <a href="${link}" target="_blank" class="download-link" title="Baixar">
-            <i class="ph ph-download"></i>
+          <a href="${link}" target="_blank" class="download-link" data-title="Baixar">
+          <i class="ph ph-download"></i>
           </a>
         `
         fileList.appendChild(li)
