@@ -1,27 +1,24 @@
 const MAX_SIZE_MB = 5
-const messageArea = document.getElementById("messageArea") //area da mensagem de upload concluido
-const fileList = document.getElementById("fileList") //fileList é onde os arquivos enviados vão aparecer
-const fileCount = document.getElementById("fileCount") //mostra quantos arquivos já foram enviados
-const totalSize = document.getElementById("totalSize") // mostra o tamanho total de arquivos enviados, somando todos 
-const linkCount = document.getElementById("linkCount") // mostra quantos links de arquivos enviados já foram gerados
-const usageBar = document.getElementById("usageBar") // Seleciona a barra de progresso que mostra o quanto de espaço dos 500mb já foi usado
-const usagePercent = document.getElementById("usagePercent") // pega o elemento que mostra em texto o percentual usado
-const usedSpace = document.getElementById("usedSpace") // guarda em texto o valor do espaço utilizado até agora (tipo: 15mb)
-const activityList = document.getElementById("activityList") // guarda a lista
-const themeToggle = document.getElementById("theme-toggle") // mudança de tema
+const messageArea = document.getElementById("messageArea") 
+const fileList = document.getElementById("fileList") 
+const fileCount = document.getElementById("fileCount") 
+const totalSize = document.getElementById("totalSize")
+const linkCount = document.getElementById("linkCount") 
+const usageBar = document.getElementById("usageBar")
+const usagePercent = document.getElementById("usagePercent")
+const usedSpace = document.getElementById("usedSpace") 
+const activityList = document.getElementById("activityList") 
+const themeToggle = document.getElementById("theme-toggle") 
 
-// inicializar contadores
 let uploadedFiles = 0
 let totalSizeBytes = 0
 let generatedLinks = 0
 
-// rastrear a posição do mouse para os tooltips
 document.addEventListener("mousemove", (e) => {
   document.documentElement.style.setProperty("--tooltip-x", `${e.clientX}px`)
   document.documentElement.style.setProperty("--tooltip-y", `${e.clientY}px`)
 })
 
-// alternar o tema
 function toggleTheme() {
   const html = document.documentElement
   const isDarkTheme = html.classList.contains("dark-theme")
@@ -37,7 +34,6 @@ function toggleTheme() {
   }
 }
 
-// verificar tema salvo (escuro)
 function initTheme() {
   const savedTheme = localStorage.getItem("theme")
   const html = document.documentElement
@@ -51,9 +47,7 @@ function initTheme() {
   }
 }
 
-// modificar a função showMessage para usar a barra de progresso
 function showMessage(msg, type = "success") {
-  // Se for uma mensagem de sucesso de upload, não mostrar o link
   if (type === "success" && msg.includes("Upload concluído")) {
     msg = "Upload concluído!"
   }
@@ -61,33 +55,27 @@ function showMessage(msg, type = "success") {
   messageArea.innerHTML = msg
   messageArea.className = `message ${type}`
 
-  // Garantir que a mensagem seja visível
   messageArea.style.display = "block"
 }
 
 function updateStats(files) {
-  // Atualizar contagem de arquivos
   uploadedFiles += files.length
   fileCount.textContent = uploadedFiles
 
-  // Atualizar tamanho total
   const sizeBytes = files.reduce((total, file) => total + file.size, 0)
   totalSizeBytes += sizeBytes
   const sizeMB = (totalSizeBytes / (1024 * 1024)).toFixed(2)
   totalSize.textContent = `${sizeMB} MB`
 
-  // Atualizar links gerados
   generatedLinks++
   linkCount.textContent = generatedLinks
 
-  // Atualizar barra de progresso
-  const maxSizeBytes = 500 * 1024 * 1024 // 500 MB
+  const maxSizeBytes = 500 * 1024 * 1024 
   const percentUsed = Math.min(100, (totalSizeBytes / maxSizeBytes) * 100).toFixed(1)
   usageBar.style.width = `${percentUsed}%`
   usagePercent.textContent = `${percentUsed}%`
   usedSpace.textContent = `${sizeMB} MB`
 
-  // Adicionar à atividade recente
   if (activityList.querySelector(".empty-activity")) {
     activityList.innerHTML = ""
   }
@@ -101,7 +89,6 @@ function updateStats(files) {
   activityList.prepend(activityItem)
 }
 
-// Declare SmashUploader here
 let SmashUploader
 
 function upload() {
@@ -119,10 +106,8 @@ function upload() {
     return
   }
 
-  // Ocultar a área de mensagem e mostrar a barra de progresso
   messageArea.style.display = "none"
 
-  // Criar ou obter a barra de progresso
   let progressContainer = document.querySelector(".upload-progress")
   if (!progressContainer) {
     progressContainer = document.createElement("div")
@@ -138,7 +123,6 @@ function upload() {
     progressContainer.appendChild(progressBar)
     progressContainer.appendChild(progressText)
 
-    // Inserir após o botão de upload
     const uploadBtn = document.querySelector(".upload-btn")
     uploadBtn.parentNode.insertBefore(progressContainer, uploadBtn.nextSibling)
   }
@@ -146,13 +130,11 @@ function upload() {
   const progressBar = progressContainer.querySelector(".upload-progress-bar")
   const progressText = progressContainer.querySelector(".upload-progress-text")
 
-  // Mostrar a barra de progresso
   progressContainer.style.display = "block"
   progressBar.style.width = "0%"
   progressText.textContent = "Iniciando upload..."
 
-  // Initialize SmashUploader here (assuming it's available globally or imported elsewhere)
-  SmashUploader = window.SmashUploader // Or however you access it
+  SmashUploader = window.SmashUploader 
 
   const su = new SmashUploader({
     region: "us-east-1",
@@ -165,11 +147,9 @@ function upload() {
     .then((result) => {
       const link = result?.transfer?.transferUrl
 
-      // Atualizar a barra de progresso para 100% e mostrar mensagem de conclusão
       progressBar.style.width = "100%"
       progressText.textContent = "Upload concluído!"
 
-      // Após 3 segundos, esconder a barra de progresso
       setTimeout(() => {
         progressContainer.style.display = "none"
       }, 3000)
@@ -179,7 +159,6 @@ function upload() {
         const fileExt = file.name.split(".").pop().toLowerCase()
         let iconClass = "ph-file"
 
-        // Determinar ícone baseado na extensão
         if (["jpg", "jpeg", "png", "gif", "svg", "webp"].includes(fileExt)) {
           iconClass = "ph-image"
         } else if (["doc", "docx", "txt", "pdf"].includes(fileExt)) {
@@ -206,18 +185,15 @@ function upload() {
         fileList.appendChild(li)
       })
 
-      // Atualizar estatísticas
       updateStats(files)
     })
     .catch((error) => {
       console.error("Erro no upload:", error)
 
-      // Mostrar erro na barra de progresso
       progressBar.style.width = "100%"
       progressBar.style.backgroundColor = "var(--error-text)"
       progressText.textContent = "Erro ao enviar arquivos"
 
-      // Após 3 segundos, esconder a barra de progresso
       setTimeout(() => {
         progressContainer.style.display = "none"
       }, 3000)
@@ -228,31 +204,24 @@ function upload() {
       const percent = event.data.progress.percent
       console.log(`Progresso: ${percent}%`)
 
-      // Atualizar a barra de progresso
       progressBar.style.width = `${percent}%`
       progressText.textContent = `${Math.round(percent)}%`
     }
   })
 }
 
-// Adicionar funcionalidade para o input de arquivo
 document.addEventListener("DOMContentLoaded", () => {
-  // Inicializar tema
   initTheme()
 
-  // Adicionar evento para o botão de alternar tema
   themeToggle.addEventListener("click", toggleTheme)
 
   const uploadContainer = document.querySelector(".upload-container")
   const uploadInput = document.getElementById("uploadInput")
 
-  // Corrigir o evento de clique no container de upload
   uploadContainer.addEventListener("click", () => {
-    // Chamar diretamente o clique no input de arquivo sem condições
     uploadInput.click()
   })
 
-  // Certifique-se de que o input file está configurado corretamente
   uploadInput.setAttribute("type", "file")
   uploadInput.setAttribute("multiple", "true")
 
@@ -267,7 +236,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   })
 
-  // Adicionar funcionalidade de arrastar e soltar
   uploadContainer.addEventListener("dragover", function (e) {
     e.preventDefault()
     this.style.background = getComputedStyle(document.documentElement).getPropertyValue("--accent-light")
@@ -294,7 +262,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   })
 
-  // Adicionar funcionalidade para copiar link
   document.addEventListener("click", (e) => {
     if (e.target.closest(".copy-link")) {
       const button = e.target.closest(".copy-link")
@@ -318,7 +285,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   })
 
-  // Alternar entre visualizações de grade e lista
   const viewButtons = document.querySelectorAll(".view-btn")
   viewButtons.forEach((button) => {
     button.addEventListener("click", function () {
