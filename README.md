@@ -63,7 +63,7 @@ const su = new SmashUploader({
 
 ## 📧 Contato
 
-Projeto acadêmico desenvolvido por:
+Projeto desenvolvido por:
 
 **Letícia Farias Nunes**  
-Sob orientação de **Luan Oliveira dos Santos**
+Orientador: **Luan Oliveira dos Santos**
